@@ -31,7 +31,7 @@ RUN if [ -f /srv/shiny-server/df_law_fin.duckdb.gz ]; then \
     fi
 
 # Expose port 5000 (matches shiny-server.conf)
-EXPOSE 5000
+EXPOSE 8080
 
 # Run as the shiny user (predefined in base image)
 USER shiny
