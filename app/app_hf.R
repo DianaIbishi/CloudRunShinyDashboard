@@ -23,8 +23,12 @@ usethis::edit_r_environ()
 readRenviron("~/.Renviron")
 Sys.getenv("HUGGINGFACE_API_KEY")
 
+# 2.1 DuckDb --------------------------------------------------------------
 
-# 2. Define system_prompt -------------------------------------------------
+db_path <- "df_law_fin.duckdb"
+con <- DBI::dbConnect(duckdb::duckdb(), db_path, read_only = TRUE)
+
+# 3. Define system_prompt -------------------------------------------------
 
 system_prompt <- "Du bist ein hilfsbereiter Schweizer Jurist und Assistent.
     Du beantwortest nur Fragen zum Strafrecht im Schweizer Rechtssystem.
@@ -209,6 +213,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
