@@ -1,6 +1,6 @@
-#!/bin/sh
-# Pick Cloud Run's PORT or fall back to 8080 locally
-PORT="${PORT:-8080}"
-sed -i "s/__PORT__/${PORT}/" /etc/shiny-server/shiny-server.conf
+#!/bin/sh 
 
+# Make sure the directory for individual app logs exists 
+mkdir -p /var/log/shiny-server 
+chown shiny.shiny /var/log/shiny-server 
 exec shiny-server >> /var/log/shiny-server.log 2>&1
