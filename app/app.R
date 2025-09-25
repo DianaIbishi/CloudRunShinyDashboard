@@ -15,12 +15,12 @@ library(shinycssloaders)
 library(shinyjs)
 library(shinychat)
 library(hover)
+library(ragnar)
 
 
-# 2. DuckDb ---------------------------------------------------------------
+# 2. Connect to DuckDb ----------------------------------------------------
 
-db_path <- "/srv/shiny-server/app/df_law_fin.duckdb"
-con <- DBI::dbConnect(duckdb::duckdb(), dbdir = db_path, read_only = TRUE)
+store <- ragnar_store_connect("/srv/shiny-server/app/df_law_fin.duckdb")
 
 # 3. Define system_prompt -------------------------------------------------
 
@@ -213,6 +213,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
