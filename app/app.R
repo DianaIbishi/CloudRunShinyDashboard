@@ -166,11 +166,14 @@ server <- function(input, output, session) {
     tryCatch({
       sess <- ellmer::chat_huggingface(
                           system_prompt = system_prompt,
+                          params        = list(
+                                          temperature = 0.5,
+                                          top_p = 0.9
+                          ),
                           model         = "HuggingFaceTB/SmolLM3-3B",    
-                          api_key       = Sys.getenv("HUGGINGFACE_API_KEY"),
-                          api_args      = list(wait_for_model = TRUE, 
-                                               stream = FALSE, 
-                                               repetition_penalty = 1.1))
+                          api_key       = hf_key()
+                          )
+                         
 
               #sess <- ragnar_register_tool_retrieve(sess, store, top_k = 3L)  
               chat_session(sess)
@@ -214,6 +217,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
