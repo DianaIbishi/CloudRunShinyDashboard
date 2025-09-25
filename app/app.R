@@ -19,7 +19,9 @@ library(hover)
 
 # 2. API KEY --------------------------------------------------------------
 
-hf_key <- function() Sys.getenv("HUGGINGFACE_API_KEY")
+hf_key <- function() {
+  Sys.getenv("HUGGINGFACE_API_KEY")
+}
 
 # 2.1 DuckDb --------------------------------------------------------------
 
@@ -214,6 +216,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
