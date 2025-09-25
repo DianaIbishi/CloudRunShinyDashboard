@@ -19,14 +19,13 @@ library(hover)
 
 # 2. API KEY --------------------------------------------------------------
 
-usethis::edit_r_environ()
 readRenviron("~/.Renviron")
 Sys.getenv("HUGGINGFACE_API_KEY")
 
 # 2.1 DuckDb --------------------------------------------------------------
 
-db_path <- "df_law_fin.duckdb"
-con <- DBI::dbConnect(duckdb::duckdb(), db_path, read_only = TRUE)
+db_path <- "/srv/shiny-server/app/df_law_fin.duckdb"
+con <- DBI::dbConnect(duckdb::duckdb(), dbdir = db_path, read_only = TRUE)
 
 # 3. Define system_prompt -------------------------------------------------
 
@@ -213,6 +212,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
