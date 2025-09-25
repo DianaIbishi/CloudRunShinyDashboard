@@ -175,7 +175,7 @@ server <- function(input, output, session) {
                                           top_p = 0.9
                           ),
                           model         = "HuggingFaceTB/SmolLM3-3B",    
-                          api_key       = Sys.getenv("HUGGINGFACE_API_KEY")
+                          api_key       = "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"
                           )
                          
 
@@ -221,6 +221,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
