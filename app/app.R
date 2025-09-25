@@ -27,7 +27,7 @@ if (inherits(con, "try-error")) {
 }
 
 # Connect to the DuckDB store which was created in Criminal Law Assistant_final/Embedding and chunking/Training_create_fin_v2.R
-store <- ragnar_store_connect("df_law_fin.duckdb", read_only = TRUE)   #read_only = 
+store <- ragnar_store_connect("/srv/shiny-server/app/df_law_fin.duckdb", read_only = TRUE)  
 
 
 # 3. Define system_prompt -------------------------------------------------
@@ -221,6 +221,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
