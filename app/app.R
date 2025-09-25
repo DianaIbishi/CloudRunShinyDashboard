@@ -20,11 +20,11 @@ library(ragnar)
 
 # 2. Connect to DuckDb ----------------------------------------------------
 
-# Path to the DuckDB file
-db_path <- "df_law_fin.duckdb"
-
-# Connect to the DuckDB database
-con <- dbConnect(duckdb::duckdb(), db_path, read_only = TRUE)
+db_path <- "/srv/shiny-server/app/df_law_fin.duckdb"
+con <- try(DBI::dbConnect(duckdb::duckdb(), dbdir = db_path, read_only = TRUE), silent = TRUE)
+if (inherits(con, "try-error")) {
+  warning("DuckDB not found at: ", db_path)
+}
 
 # Connect to the DuckDB store which was created in Criminal Law Assistant_final/Embedding and chunking/Training_create_fin_v2.R
 store <- ragnar_store_connect("df_law_fin.duckdb", read_only = TRUE)   #read_only = 
@@ -221,6 +221,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
