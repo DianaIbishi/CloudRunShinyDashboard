@@ -30,7 +30,7 @@ COPY app /srv/shiny-server/app
 WORKDIR /srv/shiny-server/app
 
 # Port muss zu shiny-server.conf passen
-EXPOSE 8080
+EXPOSE 5000
 
 # Als shiny laufen
 USER shiny
