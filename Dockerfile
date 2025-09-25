@@ -25,13 +25,8 @@ RUN chmod +x /usr/bin/shiny-server.sh
 # Copy your app (app_hf.R + df_law_fin.duckdb) into the image
 COPY app /srv/shiny-server/
 
-# Optional: decompress DB if you uploaded a compressed version instead
-RUN if [ -f /srv/shiny-server/df_law_fin.duckdb.gz ]; then \
-      gunzip -f /srv/shiny-server/df_law_fin.duckdb.gz; \
-    fi
-
 # Expose port 5000 (matches shiny-server.conf)
-EXPOSE 8080
+EXPOSE 5000
 
 # Run as the shiny user (predefined in base image)
 USER shiny
