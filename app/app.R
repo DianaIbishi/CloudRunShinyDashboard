@@ -17,11 +17,7 @@ library(shinychat)
 library(hover)
 
 
-# 2. API KEY --------------------------------------------------------------
-
-hf_key <- function() Sys.getenv("HUGGINGFACE_API_KEY")
-
-# 2.1 DuckDb --------------------------------------------------------------
+# 2. DuckDb ---------------------------------------------------------------
 
 db_path <- "/srv/shiny-server/app/df_law_fin.duckdb"
 con <- DBI::dbConnect(duckdb::duckdb(), dbdir = db_path, read_only = TRUE)
@@ -171,7 +167,7 @@ server <- function(input, output, session) {
                                           top_p = 0.9
                           ),
                           model         = "HuggingFaceTB/SmolLM3-3B",    
-                          api_key       = hf_key()
+                          api_key       = "HUGGINGFACE_API_KEY"
                           )
                          
 
@@ -217,6 +213,7 @@ server <- function(input, output, session) {
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
 
